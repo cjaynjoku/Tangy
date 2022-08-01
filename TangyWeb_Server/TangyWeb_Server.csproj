@@ -1,9 +1,55 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\LearnBlazor\DemoProduct.razor" />
+    <Content Remove="Shared\GrandChildComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\LearnBlazor\BindProp.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\LearnBlazor\BindProp.razor" />
+    <_ContentIncludedByDefault Remove="Pages\LearnBlazor\DemoProduct.razor" />
+    <_ContentIncludedByDefault Remove="Pages\ParentComponent.razor" />
+    <_ContentIncludedByDefault Remove="Shared\GrandChildComponent.razor" />
+    <_ContentIncludedByDefault Remove="Shared\_Products.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\LearnBlazor\BindProp.razor" />
+    <None Include="Pages\DemoProduct.razor" />
+    <None Include="Pages\ParentComponent.razor" />
+    <None Include="Shared\EditDeleteButton.razor" />
+    <None Include="Shared\_GrandChildComponent.razor" />
+    <None Include="Shared\_Products.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TangyModels\TangyModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\LearnBlazor\DemoProduct.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\_Products.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\ParentComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\GrandChildComponent.razor" />
+  </ItemGroup>
 
 </Project>
