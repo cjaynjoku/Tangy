@@ -1,0 +1,51 @@
+﻿@using TangyModels.LearnBlazorModels
+
+<div class="bg-light border m-2 col-5" @onclick="(args) =>SelectedProductUpdated(args, Prod.Name)">
+                <h4 class="text-secondary">Product - @Prod.Id</h4>
+                <input type="checkbox" @onchange="FavouriteUpdated" /> Add to Favourite <br /><br/>
+                Name - @Prod.Name<br/>
+                RF from Parent - @FirstFragment @SecondFragment <br/>
+                Show Properties: <input type="checkbox" @bind-value="Prod.IsActive" checked="@(Prod.IsActive?"checked":null)"/>
+
+                @if (Prod.IsActive)
+                {
+                      @foreach(var prop in Prod.ProductProperties)
+                {
+                    <p>@prop.Key - @prop.Value</p> <br/>
+                }                    
+                   
+                }
+                <br/>
+
+                
+
+                <EditDeleteButton IsActive="@Prod.IsActive"></EditDeleteButton>
+
+            </div>
+
+@code {
+    [Parameter]
+    public Demo_Product Prod { get; set;}
+
+    [Parameter]
+    public RenderFragment FirstFragment { get; set; }
+
+    [Parameter]
+    public RenderFragment SecondFragment { get; set; }
+
+
+    [Parameter]
+    public EventCallback<bool> OnFavouriteUpdated { get; set; }
+
+    private async Task FavouriteUpdated(ChangeEventArgs e)
+    {
+        await OnFavouriteUpdated.InvokeAsync((bool)e.Value);
+    }
+    [Parameter]
+    public EventCallback<string> LastSelected {get; set;}
+
+    private async Task SelectedProductUpdated(MouseEventArgs e, string ProductName)
+    {
+        await LastSelected.InvokeAsync((string)ProductName);
+    }
+}

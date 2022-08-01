@@ -1,0 +1,70 @@
+﻿@page "/demoproduct"
+
+<h2 class="text-primary">Demo Product</h2>
+<p>Favourite Total: @SelectedFavouriteCount</p>
+<p>Last Selected Product : @LastSelectedProduct</p>
+<div class="border p-2 at-2" style="background-color:azure">
+    <div class="row">
+        @foreach(var prod in Products){
+            <_Products Prod="@prod" OnFavouriteUpdated="@FavouriteCountUpdate" LastSelected="@LastSelectedProdUpdated">
+                <FirstFragment>#1</FirstFragment>
+                <SecondFragment>#2</SecondFragment>
+            </_Products>
+        }
+    </div>
+</div>
+
+
+
+@code {
+
+
+    List<Demo_Product> Products = new();
+
+    private string LastSelectedProduct {get; set;} = string.Empty;
+    private int SelectedFavouriteCount { get; set; } = 0;
+    protected override void OnInitialized()
+    {
+        Products.Add(new()
+            {
+                Id = 1,
+                Name = "Rose Candle",
+                IsActive = true,
+                Price = 10.99,
+                ProductProperties = new List<Demo_ProductProp>() {
+                new Demo_ProductProp {Id=1, Key="Flavor", Value="Rose"},
+                new Demo_ProductProp {Id=2, Key="Size", Value="20ez"},
+                new Demo_ProductProp {Id=3, Key="Color", Value="White"},
+            }
+            });
+
+        Products.Add(new()
+            {
+                Id = 2,
+                Name = "Blossom Lily",
+                IsActive = true,
+                Price = 5.92,
+                ProductProperties = new List<Demo_ProductProp>() {
+                new Demo_ProductProp {Id=1, Key="Flavor", Value="Lily"},
+                new Demo_ProductProp {Id=2, Key="Size", Value="180oz"},
+                new Demo_ProductProp {Id=3, Key="Color", Value="White"},
+            }
+            });
+    }
+
+    protected void FavouriteCountUpdate(bool isSelected)
+    {
+        if (isSelected)
+        {
+            SelectedFavouriteCount++;
+        }
+        else{
+            SelectedFavouriteCount--;
+        }
+    }
+    protected void LastSelectedProdUpdated(string selectedProduct)
+    {
+        LastSelectedProduct = selectedProduct;
+    }
+
+}

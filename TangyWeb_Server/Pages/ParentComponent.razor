@@ -1,0 +1,26 @@
+﻿@page "/parentcomponent"
+
+<h3>Parent Child Relation</h3>
+<_ChildComponent OnButtonClick="@ShowMessage" Title="This title is passed as parameter from Parent component"
+MessageForGrandChild="This message is from your parent (ParentComponent)">
+    <ChildContent>Render Child Component</ChildContent>
+    <DangerChildContent>Danger Child Content from Render Fragment</DangerChildContent>
+</_ChildComponent>
+
+
+
+<p><b>@MessageText</b></p>
+<_AnotherChildComponent placeholder="Initial Text"></_AnotherChildComponent>
+
+@*<_ChildComponent Title="This is second Child Component">
+    Render Child Component
+</_ChildComponent>*@
+
+@code {
+
+    public string MessageText= string.Empty;
+    private void ShowMessage()
+    {
+        MessageText = "Tangy Button Clicked From Child Component";
+    }
+}
