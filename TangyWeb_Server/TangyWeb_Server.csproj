@@ -18,6 +18,7 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\LearnBlazor\BindProp.razor" />
     <_ContentIncludedByDefault Remove="Pages\LearnBlazor\DemoProduct.razor" />
+    <_ContentIncludedByDefault Remove="Pages\LearnRouting.razor" />
     <_ContentIncludedByDefault Remove="Pages\ParentComponent.razor" />
     <_ContentIncludedByDefault Remove="Shared\GrandChildComponent.razor" />
     <_ContentIncludedByDefault Remove="Shared\_Products.razor" />
@@ -26,10 +27,12 @@
   <ItemGroup>
     <None Include="Pages\LearnBlazor\BindProp.razor" />
     <None Include="Pages\DemoProduct.razor" />
+    <None Include="Pages\LearnRouting.razor" />
     <None Include="Pages\ParentComponent.razor" />
     <None Include="Shared\EditDeleteButton.razor" />
     <None Include="Shared\_GrandChildComponent.razor" />
     <None Include="Shared\_Products.razor" />
+    <None Include="wwwroot\js\common.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +53,10 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Shared\GrandChildComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\LearnRouting.razor" />
   </ItemGroup>
 
 </Project>

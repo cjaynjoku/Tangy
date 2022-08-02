@@ -1,6 +1,6 @@
 ﻿@using TangyModels.LearnBlazorModels
 
-<div class="bg-light border m-2 col-5" @onclick="(args) =>SelectedProductUpdated(args, Prod.Name)">
+<div class="bg-light border m-2 col-5" @onclick="(args) => SelectedProductUpdated(args, Prod.Name)">
                 <h4 class="text-secondary">Product - @Prod.Id</h4>
                 <input type="checkbox" @onchange="FavouriteUpdated" /> Add to Favourite <br /><br/>
                 Name - @Prod.Name<br/>

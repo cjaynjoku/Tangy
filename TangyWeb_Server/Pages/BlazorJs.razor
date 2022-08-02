@@ -1,0 +1,57 @@
+﻿@page "/blazorjs"
+@inject IJSRuntime _JsRuntime
+
+<h3>BlazorJs</h3>
+<div class="row">
+    <button class="btn btn-secondary" style="width:200px" @onclick="TestConfirmBox">Test Confirm Button</button>
+</div>
+<br />
+<div class="row">
+    <button class="col-4 btn btn-success" style="width:200px" @onclick="ToastrSuccess">Toastr Success</button>
+    <button class="col-4 btn btn-danger" style="width:200px" @onclick="ToastrFailure">Toastr Failure</button>
+</div>
+<br /><br />
+<div class="row">
+    <button class="col-4 btn btn-success" style="width:200px" @onclick="SweetAlertOk">Sweet Alert Success</button>
+    <button class="col-4 btn btn-danger" style="width:200px" @onclick="SweetAlertCancel">Sweet Alert Failure</button>
+</div>
+
+
+<div class="row">
+    @if(ConfirmResult){
+        <p>Confirmation Has been Made!</p>
+    }
+    else{
+        <p>Confirmation Pending</p>
+    }
+</div>
+
+@code {
+    private string ConfirmMessage = "Are you sure you want to click?";
+    private bool ConfirmResult {get; set; }
+
+    private async Task TestConfirmBox()
+    {
+        ConfirmResult = await _JsRuntime.InvokeAsync<bool>("confirm", ConfirmMessage);
+    }
+    private async Task ToastrSuccess()
+    {
+        await _JsRuntime.ToastrSuccess("Operation Successful");
+    }
+    private async Task ToastrFailure()
+    {
+        await _JsRuntime.ToastrError("Operation Failed");
+    }
+
+    private async Task SweetAlertOk()
+    {
+        await _JsRuntime.SweetAlertOk("Success Notification", "Task Completed Succesfully!");
+    }
+    private async Task SweetAlertCancel()
+    {
+        await _JsRuntime.SweetAlertCancel("Error Notification", "Task Failed!");
+
+    }
+
+
+}
