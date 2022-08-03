@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>2890d6cd-8366-467a-a00c-caec1a4724d7</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,18 +17,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Category\CategoryList.razor" />
     <_ContentIncludedByDefault Remove="Pages\LearnBlazor\BindProp.razor" />
     <_ContentIncludedByDefault Remove="Pages\LearnBlazor\DemoProduct.razor" />
     <_ContentIncludedByDefault Remove="Pages\LearnRouting.razor" />
+    <_ContentIncludedByDefault Remove="Pages\LifeCycle.razor" />
     <_ContentIncludedByDefault Remove="Pages\ParentComponent.razor" />
     <_ContentIncludedByDefault Remove="Shared\GrandChildComponent.razor" />
     <_ContentIncludedByDefault Remove="Shared\_Products.razor" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Pages\Category\CategoryList.razor" />
     <None Include="Pages\LearnBlazor\BindProp.razor" />
     <None Include="Pages\DemoProduct.razor" />
     <None Include="Pages\LearnRouting.razor" />
+    <None Include="Pages\LifeCycle.razor" />
     <None Include="Pages\ParentComponent.razor" />
     <None Include="Shared\EditDeleteButton.razor" />
     <None Include="Shared\_GrandChildComponent.razor" />
@@ -36,6 +41,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TangyBusiness\TangyBusiness.csproj" />
+    <ProjectReference Include="..\TangyDataAccess\TangyDataAccess.csproj" />
     <ProjectReference Include="..\TangyModels\TangyModels.csproj" />
   </ItemGroup>
 
@@ -57,6 +64,23 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Pages\LearnRouting.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\LifeCycle.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Category\CategoryList.razor" />
   </ItemGroup>
 
 </Project>
