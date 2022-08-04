@@ -52,7 +52,7 @@
 
 @code {
     private IEnumerable<CategoryDTO> Categories {get; set;} = new List<CategoryDTO>();
-    private bool IsLoading { get; set; };
+    private bool IsLoading { get; set; }
 
     private int DeleteCategoryId { get; set; }
 
@@ -61,15 +61,15 @@
     {
         if (firstRender)
         {
-            LoadCategories();
+            await LoadCategories();
         }
 
     }
-    private void LoadCategories()
+    private async Task LoadCategories()
     {
         IsLoading = true;
         StateHasChanged();
-        Categories = _categoryRepository.GetAll();
+        Categories = await _categoryRepository.GetAll();
         IsLoading = false;
         StateHasChanged();
 
@@ -86,9 +86,9 @@
         IsLoading = true;
         if(isConfirmed && DeleteCategoryId != 0)
         {
-            _categoryRepository.Delete(DeleteCategoryId);
-            LoadCategories();
-            _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+          await _categoryRepository.Delete(DeleteCategoryId);
+          await LoadCategories();
+          await _jsRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
         }
 
         IsLoading=false;

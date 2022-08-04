@@ -47,40 +47,47 @@
     private string Title{get; set;}="Create";
 
 
-    private bool IsLoading { get; set; } = true;
+    private bool IsLoading { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (Id == 0)
+        if (firstRender)
         {
-            IsLoading = false;
+            if (Id == 0)
+            {
+                IsLoading = false;
+            }
+
+            else
+            {
+                Title = "Edit";
+                await LoadCategory();
+            }
         }
 
-        else
-        {
-            Title = "Edit";
-            await Task.Run(LoadCategory);
-        }
 
 
 
     }
-    private void LoadCategory()
+    private async Task LoadCategory()
     {
-        Category = _categoryRepository.Get(Id);
+        IsLoading = true;
+        StateHasChanged();
+        Category = await _categoryRepository.Get(Id);
         IsLoading = false;
+        StateHasChanged();
 
     }
 
-    private void UpSortCategory()
+    private async Task UpSortCategory()
     {
         if (Category.Id == 0)
         {
-            _categoryRepository.Create(Category);
+            await _categoryRepository.Create(Category);
         }
         else
         {
-            _categoryRepository.Update(Category);
+           await _categoryRepository.Update(Category);
             
         }
             _navigationManager.NavigateTo("category");

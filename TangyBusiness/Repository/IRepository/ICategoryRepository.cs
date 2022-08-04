@@ -9,11 +9,11 @@ namespace TangyBusiness.Repository.IRepository
 {
     public interface ICategoryRepository
     {
-        public CategoryDTO Create(CategoryDTO objDTO);
-        public CategoryDTO Update(CategoryDTO objDTO);
-        public int Delete(int Id);
-        public CategoryDTO Get(int Id);
-        public IEnumerable<CategoryDTO> GetAll();
-
+        public Task<CategoryDTO> Create(CategoryDTO objDTO);
+        public Task<CategoryDTO> Update(CategoryDTO objDTO);
+        public Task<int> Delete(int Id);
+        public Task<CategoryDTO> Get(int Id);
+        public Task<IEnumerable<CategoryDTO>> GetAll();
+            
     }
 }
