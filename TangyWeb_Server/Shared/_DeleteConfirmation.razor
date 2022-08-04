@@ -1,0 +1,52 @@
+﻿<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box">
+                    <i class="bi bi-trash3"></i>
+                </div>
+                <h4 class="modal-title w-100">Confirm Delete</h4>
+                <button type="button" @onclick="() => OnDeleteData(false)" class="close" data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">
+                <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete this? This process cannot be undone.</p>
+            </div>
+            @if (IsParentComponentProcessing)
+            {
+                <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" disabled>Cancel</button>
+                <button type="button" disabled>Processing...</button>
+            </div>
+            }
+            else{
+                 <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @onclick="() => OnDeleteData(false)">Cancel</button>
+                <button type="button" class="btn btn-danger" @onclick="(args) => OnDeleteData(true)">Delete</button>
+            </div>
+            }
+            
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool IsParentComponentProcessing { get; set; }
+    
+   
+    [Parameter]
+    public EventCallback<bool> DeleteData { get; set; }
+
+    private async Task OnDeleteData(bool isConfirmed)
+    {
+        if (isConfirmed)
+        {
+            await DeleteData.InvokeAsync(isConfirmed);
+        }
+        
+        
+    }
+
+}

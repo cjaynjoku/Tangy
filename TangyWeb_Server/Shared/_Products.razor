@@ -46,6 +46,7 @@
 
     private async Task SelectedProductUpdated(MouseEventArgs e, string ProductName)
     {
+        
         await LastSelected.InvokeAsync((string)ProductName);
     }
 }

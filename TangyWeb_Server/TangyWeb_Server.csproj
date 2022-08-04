@@ -83,4 +83,8 @@
     <UpToDateCheckInput Remove="Pages\Category\CategoryList.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

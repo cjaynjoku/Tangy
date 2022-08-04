@@ -15,3 +15,10 @@ window.Swal = (type, title, text) => {
         swal(title, text, "error");
     }
 }
+ 
+window.ShowDeleteConfirmationModal = () => {
+    $('#myModal').modal('show');
+}
+window.HideDeleteConfirmationModal = () => {
+    $('#myModal').modal('hide');
+}

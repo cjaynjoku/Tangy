@@ -1,13 +1,30 @@
 ﻿@page "/category/create"
+@page "/category/edit/{id:int}"
 @using TangyModels
+
+@inject ICategoryRepository _categoryRepository
+@inject NavigationManager _navigationManager
+
 
 <div class="row my-2">
     <h3 class="card-title text-primary mb-3 ml-3">@Title Category</h3>
     <div class="col-8">
-        <EditForm Model="Category">
+
+        @if (IsLoading)
+        {
+             <div class="text-center">
+                    <img src="images/loading.gif">
+                </div>
+        }
+        else
+        {
+        <EditForm Model="Category" OnValidSubmit="UpSortCategory">
+            <DataAnnotationsValidator/>
+            @*<ValidationSummary/>*@
                 <div class="form-group">
                     <label>Name</label>
                     <InputText @bind-Value="Category.Name" class="form-control"></InputText>
+                     <ValidationMessage For="() => Category.Name"></ValidationMessage>
                     </div>
                     <div class="form-group py-2">
 <button class="btn btn-primary">@Title</button>
@@ -15,13 +32,60 @@
 
 </div>
         </EditForm>
+          }
+
     </div>
     </div>
 
 
 @code {
+    [Parameter]
+    public int Id{ get; set; }
+
     private CategoryDTO Category { get; set; } = new CategoryDTO();
 
     private string Title{get; set;}="Create";
+
+
+    private bool IsLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == 0)
+        {
+            IsLoading = false;
+        }
+
+        else
+        {
+            Title = "Edit";
+            await Task.Run(LoadCategory);
+        }
+
+
+
+    }
+    private void LoadCategory()
+    {
+        Category = _categoryRepository.Get(Id);
+        IsLoading = false;
+
+    }
+
+    private void UpSortCategory()
+    {
+        if (Category.Id == 0)
+        {
+            _categoryRepository.Create(Category);
+        }
+        else
+        {
+            _categoryRepository.Update(Category);
+            
+        }
+            _navigationManager.NavigateTo("category");
+
+
+    }
 
 }
