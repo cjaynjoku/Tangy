@@ -46,7 +46,7 @@ namespace TangyBusiness.Repository
 
         public async Task<CategoryDTO> Get(int Id)
         {
-            var obj = _db.Categories.FirstOrDefaultAsync(o => o.Id == Id);
+            var obj = await _db.Categories.FirstOrDefaultAsync(o => o.Id == Id);
             if (obj != null)
             {
                 var _obj = _mapper.Map<Category, CategoryDTO>(obj);
